@@ -1,0 +1,58 @@
+```yaml
+name: HealthCare-POC CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js 20 for the React frontend
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      # 3. Install frontend dependencies
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      # 4. Build the React frontend
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build
+
+      # 5. Setup Java 17 for the Spring Boot backend
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      # 6. Make Gradle wrapper executable
+      - name: Make Gradle wrapper executable
+        run: chmod +x ./gradlew
+
+      # 7. Run backend tests
+      - name: Run backend tests
+        run: ./gradlew test --no-daemon
+
+      # 8. Build the backend application
+      - name: Build backend
+        run: ./gradlew build --no-daemon
+```

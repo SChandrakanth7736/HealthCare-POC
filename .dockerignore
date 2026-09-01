@@ -1,0 +1,24 @@
+# Git
+.git
+.gitignore
+.github
+
+# Gradle local cache and build output (rebuilt inside container)
+.gradle
+build
+
+# Frontend (built separately by its own Docker stage)
+frontend
+
+# IDE
+.idea
+*.iml
+*.ipr
+*.iws
+
+# Terraform
+terraform
+
+# Docs / misc
+*.md
+HELP.md

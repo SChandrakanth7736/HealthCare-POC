@@ -26,3 +26,19 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
+### Terraform ###
+# Local state (never commit — contains secrets & resource IDs)
+terraform/.terraform/
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/crash.log
+# tfvars may contain secrets
+terraform/*.tfvars
+terraform/*.tfvars.json
+# .terraform.lock.hcl should be committed for reproducible runs
+
+### Frontend ###
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local

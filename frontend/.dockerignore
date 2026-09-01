@@ -1,0 +1,15 @@
+# Node modules and build output (rebuilt inside Docker stages)
+node_modules
+dist
+
+# Environment files with secrets
+.env
+.env.local
+.env.*.local
+
+# Vite cache
+.vite
+
+# IDE
+.idea
+*.iml
