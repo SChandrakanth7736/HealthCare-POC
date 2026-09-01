@@ -1,4 +1,3 @@
-```yaml
 name: HealthCare-POC CI
 
 on:
@@ -55,4 +54,3 @@ jobs:
       # 8. Build the backend application
       - name: Build backend
         run: ./gradlew build --no-daemon
-```
