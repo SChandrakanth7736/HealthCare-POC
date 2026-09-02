@@ -54,3 +54,24 @@ jobs:
       # 8. Build the backend application
       - name: Build backend
         run: ./gradlew build --no-daemon
+
+      # 9. check docker
+      - name: Check Docker
+        run: docker --version
+
+      # 10. Build backend Docker image
+      - name: Build backend Docker image
+        run: |
+            docker build \
+              -t healthcare-poc-backend:${{ github.sha }}  \
+              .      
+      # 11. Build frontend Docker image
+      - name: Build frontend Docker image
+        run: |
+            docker build \
+              -t healthcare-poc-frontend:${{ github.sha }}  \
+              ./frontend
+
+      # list docker images
+      - name: List Docker images
+        run: docker images
